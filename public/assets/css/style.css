@@ -1,0 +1,164 @@
+* {
+  font-family: sans-serif;
+}
+
+body>.grid {
+  height: 100%;
+}
+
+.image {
+  margin-top: -100px;
+}
+
+.column {
+  max-width: 450px;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap");
+/* body ::-webkit-scrollbar {
+  width: 6px;
+} */
+
+#brand-header {
+  font-size: 15px;
+}
+
+.header {
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.ui.vertical.menu.sidebar-menu {
+  margin-top: 40px !important;
+  max-height: calc(100% - 40px) !important;
+  height: calc(100% - 40px) !important;
+}
+
+.ui.vertical.menu.sidebar-menu .item i.icon {
+  float: left;
+  margin: 0em 0.5em 0em 0em;
+}
+
+#brand-header {
+  text-align: center;
+  width: 15rem;
+  /* font-size: 18px; */
+  font-weight: bolder;
+}
+
+/* .ui.card {
+  height: 190px;
+} */
+
+.ui.card:hover {
+  transform: scale(1.03, 1.03);
+  -webkit-transform: scale(1.03, 1.03);
+}
+
+.widget {
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+.main-content {
+  margin-top: 40px;
+}
+
+#expense-drilldown,#exc-drilldown,#budget-util, #fin-goal-tracking {
+  display: none
+}
+
+#over-spend-container, #daily-expenditure-container, #utilization-container, #financial-goal-container {
+  transform-origin: top left;
+  transition: all .5s linear;
+}
+
+@media (min-width: 768px) {
+  .ui.vertical.menu.sidebar-menu {
+    visibility: visible;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    width: 15rem !important;
+  }
+  .main-content {
+    margin-left: 15rem;
+  }
+  .sidebar-menu-toggler {
+    display: none !important;
+  }
+}
+
+.table-thead {
+  background-color: #009879!important;
+  color: #ffffff!important;
+  text-align: left!important;
+  font-weight: bold!important;
+}
+
+#chartdiv {
+  max-width: 100%;
+  height: 500px;
+}
+
+#incomes-accordion {
+  border-left: 10px solid blue;
+  border-top: 2px solid blue;
+  border-right: 2px solid blue;
+}
+
+#home-utilities-accordion {
+  border-left: 10px solid #00b0db;
+  border-top: 2px solid #00b0db;
+  border-right: 2px solid #00b0db;
+}
+
+#groceries-accordion {
+  border-left: 10px solid #7c439a;
+  border-top: 2px solid #7c439a;
+  border-right: 2px solid #7c439a;
+}
+
+#transport-accordion {
+  border-left: 10px solid #b1953a;
+  border-top: 2px solid #b1953a;
+  border-right: 2px solid #b1953a;
+}
+
+#ent-eatout-accordion {
+  border-left: 10px solid #ef7929;
+  border-top: 2px solid #ef7929;
+  border-right: 2px solid #ef7929;
+}
+
+#total-accordion {
+  border-left: 10px solid #7b9e10;
+  border-top: 2px solid #7b9e10;
+  border-bottom: 2px solid #7b9e10;
+  border-right: 2px solid #7b9e10;
+}
+
+.budget-cat-total {
+  float: right;
+  font-size: 22px;
+}
+
+.budget-cat-title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.budget-label {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.pt-3-half {
+  padding-top: 1.4rem;
+}
+
+
+#expense-ratios-canvas,#expense-barchart-canvas, #overall-util-canvas, #daily-util-canvas,#guidance-canvas,#sentiment-canvas {
+  width: 100%;
+  height: 500px;
+}

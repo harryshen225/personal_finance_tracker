@@ -1,0 +1,41 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    </div>
+  </div>
+</nav>
+
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui image header">
+      <div class="content">
+       <i class="fas fa-wallet"></i> Big Wallet
+      </div>
+    </h2>
+    <form action="/api/login" method="POST" class="ui large form">
+      <div class="ui stacked secondary  segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="email" placeholder="E-mail address">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" placeholder="Password">
+          </div>
+        </div>
+        <button class="ui fluid large teal submit button" type="submit">Login</button>
+      </div>
+      <div class="ui error message"></div>
+    </form>
+
+    <div class="ui message">
+      First time with Us?
+      <a href="/signup"><strong>Register</strong></a> Now!!!
+    </div>
+  </div>
+</div>
+
+<script src="/assets/js/login_signup.js"></script>

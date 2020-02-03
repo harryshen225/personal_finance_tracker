@@ -1,0 +1,513 @@
+<!-- sidebar -->
+<div class="ui sidebar inverted vertical menu sidebar-menu" id="sidebar">
+    <div class="item" id="general-tab">
+        <div class="ui inverted accordion">
+            <div class="active title">
+                <i class="home icon"></i>
+                <div class="header">General</div>
+            </div>
+            <div class="active content">
+                <a href="/index" class="item">
+                    <div>
+                        <i class="icon tachometer alternate"></i>
+                        Dashboard
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="ui inverted accordion">
+            <div class="active title">
+                <i class="user md icon"></i>
+                <div class="header">
+                    Manage
+                </div>
+            </div>
+            <div class="active content">
+                <a class="item">
+                    <div><i class="cogs icon"></i>Budget</div>
+                </a>
+                <a class="item" href="/expenses">
+                    <div><i class="users icon"></i>Expenses</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+        <a href="/insights">
+            <i class="icon chart line"></i>
+            <div class="header" id="insights">
+                Insights
+            </div>
+        </a>
+    </div>
+
+    <div class="item">
+        <div class="ui inverted accordion">
+            <div class="active title">
+                <i class="eye icon"></i>
+                <div class="header">Snapshots</div>
+            </div>
+            <div class="active content">
+                <a class="item">
+                    <div class="header">
+                        Month-to-Date Usage
+                    </div>
+                    <div class="ui tiny olive inverted progress">
+                        <div class="bar" style="width: {{homeUtil.monthUtil}}%"></div>
+                        <div class="label">Home and Utilization</div>
+                    </div>
+
+                    <div class="ui tiny teal inverted progress">
+                        <div class="bar" style="width:{{groceries.monthUtil}}%"></div>
+                        <div class="label">Groceries</div>
+                    </div>
+
+                    <div class="ui tiny purple inverted progress">
+                        <div class="bar" style="width: {{transport.monthUtil}}%"></div>
+                        <div class="label">Transport</div>
+                    </div>
+
+                    <div class="ui tiny yellow inverted progress">
+                        <div class="bar" style="width:{{entEatout.monthUtil}}%"></div>
+                        <div class="label">Entertainment and Eat-out</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- sidebar -->
+<!-- top nav -->
+
+<nav class="ui top fixed inverted menu">
+    <div class="left menu">
+        <a href="#" class="sidebar-menu-toggler item" data-target="#sidebar">
+            <i class="sidebar icon"></i>
+        </a>
+        <div class="header item" id="brand-header">
+            <i class="money bill alternate outline icon"></i>
+            Big Wallet
+        </div>
+    </div>
+
+    <div class="right menu">
+        <a href="#" class="item">
+            Welcome!! {{name}}
+        </a>
+        <div class="ui dropdown item">
+            <i class="user cirlce icon"></i>
+            <div class="menu">
+                <a href="#" class="item">
+                    <i class="info circle icon"></i> Account</a>
+                <a href="/api/logout" class="item" id="logout">
+                    <i class="sign-out icon"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- top nav -->
+
+{{!-- pusher content --}}
+<div class="pusher">
+    <div class="main-content">
+        <div class="widget">
+            <div class="ui raised segment">
+                <h2 class="ui horizontal divider blue header fluid">
+                    <div class="ui centered grid padded">
+                        <div class="column">
+                            <i class="list alternate outline icon"></i>
+                            Budget Management
+                        </div>
+                </h2>
+
+
+                <div class="ui vertical fluid accordion menu">
+                    <div class="item" id="incomes-accordion">
+                        <a class="active title">
+                            {{!-- <i class="dropdown icon"></i> --}}
+                            <span class="budget-cat-title">Incomes</span>
+                            <span class="budget-cat-total" id="budget-total-income">$0</span>
+                        </a>
+                        <div class="active content">
+                            <div class="ui form">
+                                {{!-- <div class="ui vertical segment"> --}}
+                                <div class="three fields">
+                                    <div class="field">
+                                        <h4 for="salary" class="budget-label">Salary Income</h4>
+                                    </div>
+                                    <div class="field"><input type="number" class="amount income" id="salary-amount">
+                                    </div>
+                                    <div class="field">
+                                        <div class="ui selection dropdown" id="salary-cadence">
+                                            <div class="default text">Cadence</div>
+                                            <i class="dropdown icon"></i>
+                                            <input type="hidden" name="salary-cadence">
+                                            <div class="menu">
+                                                <div class="item" data-value="52">Weekly</div>
+                                                <div class="item" data-value="26">Fortnightly</div>
+                                                <div class="item" data-value="12">Monthly</div>
+                                                <div class="item" data-value="4">Quarterly</div>
+                                                <div class="item" data-value="1">Annually</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="three fields">
+                                    <div class="field">
+                                        <h4 for="income1" class="budget-label">Rental Income</h4>
+                                    </div>
+                                    <div class="field"><input type="number" class="amount income" id="rental-amount">
+                                    </div>
+                                    <div class="field">
+                                        <div class="ui selection dropdown" id="rental-cadence">
+                                            <div class="default text">Cadence</div>
+                                            <i class="dropdown icon"></i>
+                                            <input type="hidden" name="gender">
+                                            <div class="menu">
+                                                <div class="item" data-value="52">Weekly</div>
+                                                <div class="item" data-value="26">Fortnightly</div>
+                                                <div class="item" data-value="12">Monthly</div>
+                                                <div class="item" data-value="4">Quarterly</div>
+                                                <div class="item" data-value="1">Annually</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="three fields">
+                                    <div class="field">
+                                        <h4 for="income1" class="budget-label">Other Income</h4>
+                                    </div>
+                                    <div class="field"><input type="number" class="amount income"
+                                            id="otherIncome-amount"></div>
+                                    <div class="field">
+                                        <div class="ui selection dropdown" id="otherIncome-cadence">
+                                            <div class="default text">Cadence</div>
+                                            <i class="dropdown icon"></i>
+                                            <input type="hidden" name="gender">
+                                            <div class="menu">
+                                                <div class="item" data-value="52">Weekly</div>
+                                                <div class="item" data-value="26">Fortnightly</div>
+                                                <div class="item" data-value="12">Monthly</div>
+                                                <div class="item" data-value="4">Quarterly</div>
+                                                <div class="item" data-value="1">Annually</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item" id="home-utilities-accordion">
+                        <a class="active title">
+                            {{!-- <i class="dropdown icon"></i> --}}
+                            <span class="budget-cat-title">Home and Utilities</span>
+                            <span class="budget-cat-total" id="budget-total-home-utilities">$0</span>
+                        </a>
+                        <div class="active content">
+                            <div class="ui form">
+                                {{!-- <div class="ui vertical segment"> --}}
+                                <div class="three fields" id="gew">
+                                    <div class="field">
+                                        <h4 for="gas-elec-water" class="budget-label">Gas,Electricity,Water </h4>
+                                    </div>
+                                    <div class="field">
+                                        <input type="number" class="amount home utilities"
+                                            id="gasElecWater-amount"></div>
+                                    <div class="field">
+                                        <div class="ui selection dropdown" id="gasElecWater-cadence">
+                                            <div class="default text">Cadence</div>
+                                            <i class="dropdown icon"></i>
+                                            <input type="hidden" name="gender">
+                                            <div class="menu">
+                                                <div class="item" data-value="52">Weekly</div>
+                                                <div class="item" data-value="26">Fortnightly</div>
+                                                <div class="item" data-value="12">Monthly</div>
+                                                <div class="item" data-value="4">Quarterly</div>
+                                                <div class="item" data-value="1">Annually</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="field" style="display:none">
+                                        <span class="subcat-total"></span>
+                                    </div>
+                                </div>
+
+                                <div class="three fields">
+                                    <div class="field">
+                                        <h4 for="mortgage" class="budget-label">Mortgage Repayment</h4>
+                                    </div>
+                                    <div class="field"><input type="number" class="amount home utilities"
+                                            id="mortgage-amount"></div>
+                                    <div class="field">
+                                        <div class="ui selection dropdown" id="mortgage-cadence">
+                                            <div class="default text">Cadence</div>
+                                            <i class="dropdown icon"></i>
+                                            <input type="hidden" name="gender">
+                                            <div class="menu">
+                                                <div class="item" data-value="52">Weekly</div>
+                                                <div class="item" data-value="26">Fortnightly</div>
+                                                <div class="item" data-value="12">Monthly</div>
+                                                <div class="item" data-value="4">Quarterly</div>
+                                                <div class="item" data-value="1">Annually</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="three fields">
+                                    <div class="field">
+                                        <h4 for="phone-internet" class="budget-label">Phone and Internet</h4>
+                                    </div>
+                                    <div class="field"><input type="number" class="amount home utilities"
+                                            id="phoneInt-amount"></div>
+                                    <div class="field">
+                                        <div class="ui selection dropdown" id="phoneInt-cadence">
+                                            <div class="default text">Cadence</div>
+                                            <i class="dropdown icon"></i>
+                                            <input type="hidden" name="gender">
+                                            <div class="menu">
+                                                <div class="item" data-value="52">Weekly</div>
+                                                <div class="item" data-value="26">Fortnightly</div>
+                                                <div class="item" data-value="12">Monthly</div>
+                                                <div class="item" data-value="4">Quarterly</div>
+                                                <div class="item" data-value="1">Annually</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="three fields">
+                                    <div class="field">
+                                        <h4 for="hu-other" class="budget-label">Other</h4>
+                                    </div>
+                                    <div class="field"><input type="number" class="amount home utilities"
+                                            id="huOther-amount"></div>
+                                    <div class="field">
+                                        <div class="ui selection dropdown" id="huOther-cadence">
+                                            <div class="default text">Cadence</div>
+                                            <i class="dropdown icon"></i>
+                                            <input type="hidden" name="gender">
+                                            <div class="menu">
+                                                <div class="item" data-value="52">Weekly</div>
+                                                <div class="item" data-value="26">Fortnightly</div>
+                                                <div class="item" data-value="12">Monthly</div>
+                                                <div class="item" data-value="4">Quarterly</div>
+                                                <div class="item" data-value="1">Annually</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="item" id="groceries-accordion">
+                        <a class="active title">
+                            {{!-- <i class="dropdown icon"></i> --}}
+                            <span class="budget-cat-title">Groceries</span>
+                            <span class="budget-cat-total" id="budget-total-groceries">$0</span>
+                        </a>
+                        <div class="active content">
+                            <div class="ui form">
+                                {{!-- <div class="ui vertical segment"> --}}
+                                <div class="three fields">
+                                    <div class="field">
+                                        <h4 for="income1" class="budget-label">Food</h4>
+                                    </div>
+                                    <div class="field"><input type="number" class="amount groceries" id="food-amount">
+                                    </div>
+                                    <div class="field">
+                                        <div class="ui selection dropdown" id="food-cadence">
+                                            <div class="default text">Cadence</div>
+                                            <i class="dropdown icon"></i>
+                                            <input type="hidden" name="gender">
+                                            <div class="menu">
+                                                <div class="item" data-value="52">Weekly</div>
+                                                <div class="item" data-value="26">Fortnightly</div>
+                                                <div class="item" data-value="12">Monthly</div>
+                                                <div class="item" data-value="4">Quarterly</div>
+                                                <div class="item" data-value="1">Annually</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="three fields">
+                                    <div class="field">
+                                        <h4 for="income1" class="budget-label">Other</h4>
+                                    </div>
+                                    <div class="field"><input type="number" class="amount groceries"
+                                            id="groceriesOther-amount"></div>
+                                    <div class="field">
+                                        <div class="ui selection dropdown" id="groceriesOther-cadence">
+                                            <div class="default text">Cadence</div>
+                                            <i class="dropdown icon"></i>
+                                            <input type="hidden" name="gender">
+                                            <div class="menu">
+                                                <div class="item" data-value="52">Weekly</div>
+                                                <div class="item" data-value="26">Fortnightly</div>
+                                                <div class="item" data-value="12">Monthly</div>
+                                                <div class="item" data-value="4">Quarterly</div>
+                                                <div class="item" data-value="1">Annually</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item" id="transport-accordion">
+                        <a class="active title">
+                            {{!-- <i class="dropdown icon"></i> --}}
+                            <span class="budget-cat-title">Transport</span>
+                            <span class="budget-cat-total" id="budget-total-transport">$0</span>
+                        </a>
+                        <div class="active content">
+                            <div class="ui form">
+                                {{!-- <div class="ui vertical segment"> --}}
+                                <div class="three fields">
+                                    <div class="field">
+                                        <h4 for="income1" class="budget-label">Public Transport</h4>
+                                    </div>
+                                    <div class="field"><input type="number" class="amount transport"
+                                            id="publicTrans-amount"></div>
+                                    <div class="field">
+                                        <div class="ui selection dropdown" id="publicTrans-cadence">
+                                            <div class="default text">Cadence</div>
+                                            <i class="dropdown icon"></i>
+                                            <input type="hidden" name="gender">
+                                            <div class="menu">
+                                                <div class="item" data-value="52">Weekly</div>
+                                                <div class="item" data-value="26">Fortnightly</div>
+                                                <div class="item" data-value="12">Monthly</div>
+                                                <div class="item" data-value="4">Quarterly</div>
+                                                <div class="item" data-value="1">Annually</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="three fields">
+                                    <div class="field">
+                                        <h4 for="income1" class="budget-label">Fuel and Parkings</h4>
+                                    </div>
+                                    <div class="field"><input type="number" class="amount transport"
+                                            id="fuelParkings-amount"></div>
+                                    <div class="field">
+                                        <div class="ui selection dropdown" id="fuelParkings-cadence">
+                                            <div class="default text">Cadence</div>
+                                            <i class="dropdown icon"></i>
+                                            <input type="hidden" name="gender">
+                                            <div class="menu">
+                                                <div class="item" data-value="52">Weekly</div>
+                                                <div class="item" data-value="26">Fortnightly</div>
+                                                <div class="item" data-value="12">Monthly</div>
+                                                <div class="item" data-value="4">Quarterly</div>
+                                                <div class="item" data-value="1">Annually</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item" id="ent-eatout-accordion">
+                        <a class="active title">
+                            {{!-- <i class="dropdown icon"></i> --}}
+                            <span class="budget-cat-title">Entertainment and Eat-out</span>
+                            <span class="budget-cat-total" id="budget-total-ent-eatout">$0</span>
+                        </a>
+                        <div class="active content">
+                            <div class="ui form">
+                                {{!-- <div class="ui vertical segment"> --}}
+                                <div class="three fields">
+                                    <div class="field">
+                                        <h4 for="eatout" class="budget-label">Eat-out</h4>
+                                    </div>
+                                    <div class="field"><input type="number" class="amount ent eatout"
+                                            id="eatout-amount"></div>
+                                    <div class="field">
+                                        <div class="ui selection dropdown" id="eatout-cadence">
+                                            <div class="default text">Cadence</div>
+                                            <i class="dropdown icon"></i>
+                                            <input type="hidden" name="cadence">
+                                            <div class="menu">
+                                                <div class="item" data-value="52">Weekly</div>
+                                                <div class="item" data-value="26">Fortnightly</div>
+                                                <div class="item" data-value="12">Monthly</div>
+                                                <div class="item" data-value="4">Quarterly</div>
+                                                <div class="item" data-value="1">Annually</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="three fields">
+                                    <div class="field">
+                                        <h4 for="ent" class="budget-label">Entertainment</h4>
+                                    </div>
+                                    <div class="field"><input type="number" class="amount ent eatout" id="ent-amount">
+                                    </div>
+                                    <div class="field">
+                                        <div class="ui selection dropdown" id="ent-cadence">
+                                            <div class="default text">Cadence</div>
+                                            <i class="dropdown icon"></i>
+                                            <input type="hidden" name="cadence">
+                                            <div class="menu">
+                                                <div class="item" data-value="52">Weekly</div>
+                                                <div class="item" data-value="26">Fortnightly</div>
+                                                <div class="item" data-value="12">Monthly</div>
+                                                <div class="item" data-value="4">Quarterly</div>
+                                                <div class="item" data-value="1">Annually</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="item" id="total-accordion">
+                        <a class="active title">
+                            {{!-- <i class="dropdown icon"></i> --}}
+                            <span class="budget-cat-title">Total</span>
+                            <span class="budget-cat-total" id="budget-total">$0</span>
+                        </a>
+                        <div class="active content">
+
+                        </div>
+                    </div>
+
+
+                    <div class="item" id="button-accordion">
+                        <button class="ui green button" id="submit-budget"><i class="save icon"></i>Save
+                            Changes</button>
+                        <button class="ui red button" id="discard-budget"><i class="ban icon"></i>Discard
+                            Changes</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/budget.js"></script>

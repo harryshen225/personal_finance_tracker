@@ -1,0 +1,399 @@
+<!-- sidebar -->
+<div class="ui sidebar inverted vertical menu sidebar-menu" id="sidebar">
+    <div class="item" id="general-tab">
+        <div class="ui inverted accordion">
+            <div class="active title">
+                <i class="home icon"></i>
+                <div class="header">General</div>
+            </div>
+            <div class="active content">
+                <a href="/index" class="item">
+                    <div>
+                        <i class="icon tachometer alternate"></i>
+                        Dashboard
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="ui inverted accordion">
+            <div class="active title">
+                <i class="user md icon"></i>
+                <div class="header">
+                    Manage
+                </div>
+            </div>
+            <div class="active content">
+                <a class="item" href="/budget">
+                    <div><i class="cogs icon"></i>Budget</div>
+                </a>
+                <a class="item" href="/expenses">
+                    <div><i class="users icon"></i>Expenses</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+        <a href="/insights">
+            <i class="icon chart line"></i>
+            <div class="header" id="insights">
+                Insights
+            </div>
+        </a>
+    </div>
+
+    <div class="item">
+        <div class="ui inverted accordion">
+            <div class="active title">
+                <i class="eye icon"></i>
+                <div class="header">Snapshots</div>
+            </div>
+            <div class="active content">
+                <a class="item">
+                    <div class="header">
+                        Month-to-Date Usage
+                    </div>
+                    <div class="ui tiny olive inverted progress">
+                        <div class="bar" style="width: {{homeUtil.monthUtil}}%"></div>
+                        <div class="label">Home and Utilization</div>
+                    </div>
+
+                    <div class="ui tiny teal inverted progress">
+                        <div class="bar" style="width:{{groceries.monthUtil}}%"></div>
+                        <div class="label">Groceries</div>
+                    </div>
+
+                    <div class="ui tiny purple inverted progress">
+                        <div class="bar" style="width: {{transport.monthUtil}}%"></div>
+                        <div class="label">Transport</div>
+                    </div>
+
+                    <div class="ui tiny yellow inverted progress">
+                        <div class="bar" style="width:{{entEatout.monthUtil}}%"></div>
+                        <div class="label">Entertainment and Eat-out</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- sidebar -->
+<!-- top nav -->
+
+<nav class="ui top fixed inverted menu">
+    <div class="left menu">
+        <a href="#" class="sidebar-menu-toggler item" data-target="#sidebar">
+            <i class="sidebar icon"></i>
+        </a>
+        <div class="header item" id="brand-header">
+            <i class="money bill alternate outline icon"></i>
+            Big Wallet
+        </div>
+    </div>
+
+    <div class="right menu">
+        <a href="#" class="item">
+            Welcome!! <span id="username">{{name}}</span>
+        </a>
+        <div class="ui dropdown item">
+            <i class="user cirlce icon"></i>
+            <div class="menu">
+                <a href="#" class="item">
+                    <i class="info circle icon"></i> Account</a>
+                <a href="/api/logout" class="item" id="logout">
+                    <i class="sign-out icon"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- top nav -->
+<div class="pusher">
+    <div class="main-content">
+        <div class="ui grid stackable padded">
+            <div class="four wide computer eight wide tablet sixteen wide mobile column" id="over-spend-container">
+                <div class="ui raised fluid card " id="over-spending-card">
+                    <div class="content">
+                        <div class="ui right floated header red">
+                            <i class="icon shopping cart"></i>
+                        </div>
+                        <div class="header">
+                            <div class="ui red header">
+                                <span id="os-count"></span>
+                            </div>
+                        </div>
+                        <div class="meta">
+                            Overspending Categories
+                        </div>
+                        <div class="description">
+                            Your actual expenses this month have exceeded the budgeted amount.
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <div class="ui two buttons">
+                            <div class="ui red button">Exceesive Expenditures</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="four wide computer eight wide tablet sixteen wide mobile column"
+                id="daily-expenditure-container">
+                <div class="ui raised fluid card" id="daily-expenditure-card">
+                    <div class="content">
+                        <div class="ui right floated header green">
+                            <i class="money bill alternate icon"></i>
+                        </div>
+                        <div class="header">
+                            <div class="ui header green" id="avg-daily-expense"></div>
+                        </div>
+                        <div class="meta">
+                            Average Daily Expenditure
+                        </div>
+                        <div class="description">
+                            Average Daily Expenditure is calculated only based on daily Expenditures.
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <div class="ui two buttons">
+                            <div class="ui green button">Expenses Structure</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="four wide computer eight wide tablet sixteen wide mobile column" id="utilization-container">
+                <div class="ui raised fluid card" id="utilization-card">
+                    <div class="content">
+                        <div class="ui right floated header teal">
+                            <i class="icon tachometer alternate"></i>
+                        </div>
+                        <div class="header">
+                            <div class="ui teal header" id="overall-util"></div>
+                        </div>
+                        <div class="meta">
+                            Overall Utilization
+                        </div>
+                        <div class="description">
+                            Overall budget utilization of current month to date.
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <div class="ui two buttons">
+                            <div class="ui teal button">Budget Utilization</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="four wide computer eight wide tablet sixteen wide mobile column" id="financial-goal-container">
+                <div class="ui raised fluid card" id="financial-goal-card">
+                    <div class="content">
+                        <div class="ui right floated header purple">
+                            <i class="icon trophy"></i>
+                        </div>
+                        <div class="header">
+                            <div class="ui purple header">On-Track</div>
+                        </div>
+                        <div class="meta">
+                            Monthly Financial Goal
+                        </div>
+                        <div class="description">
+                            Month-to-Date expenses are looking good to achieve your financial goal.
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <div class="ui two buttons">
+                            <div class="ui purple button">Financial Insights</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="widget">
+            <div class="ui raised segment" id="exc-drilldown">
+                <h2 class="ui horizontal divider red header" id="osc-divider">
+                    <i class="list alternate outline icon"></i>
+                    Exceesive Expenditures
+                </h2>
+                {{!-- statistics --}}
+                <div class="ui three small statistics">
+                    {{!-- overspent percentage --}}
+                    <div class=" statistic">
+                        <div class="value">
+                            128%
+                        </div>
+                        <div class="label">
+                            Overspent
+                        </div>
+                    </div>
+                    {{!-- overspent percentage --}}
+                    <div class=" statistic">
+                        <div class="value">
+                            $1200
+                        </div>
+                        <div class="label">
+                            Exceeded Amount
+                        </div>
+                    </div>
+
+                    {{!-- Number of Counts Violated --}}
+                    <div class=" statistic">
+                        <div class="value">
+                            3
+                        </div>
+                        <div class="label">
+                            Violated Counts
+                        </div>
+                    </div>
+                </div>
+                {{!-- column-chart --}}
+                <div class="ui grid fluid stackable padded">
+                    <div class="eight wide computer eight wide tablet sixteen wide mobile fluid column"
+                        id="exc-expense-column-container">
+                        <canvas id="exc-expense-column-canvas" data-hidden=false height=200></canvas>
+                    </div>
+                    <div class="eight wide computer eight wide tablet sixteen wide mobile fluid column"
+                        id="exc-expense-timeseries">
+                        <canvas id="exc-expense-bar-canvas" data-hidden=false height=200></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="widget" id="expense-structure">
+            <div class="ui raised segment" id="expense-drilldown">
+                <h2 class="ui horizontal divider green header" id="osc-divider">
+                    <i class="list alternate outline icon"></i>
+                    Expenses Structure
+                </h2>
+                {{!-- column-chart --}}
+                <div class="ui raised segment">
+                    <div id="expense-ratios-canvas"></div>
+                </div>
+                <div class="ui raised segment">
+                    <div id="expense-barchart-canvas"></div>
+                </div>
+            </div>
+        </div>
+
+        {{!-- budget util --}}
+        <div class="widget">
+            <div class="ui raised segment" id="budget-util">
+                <h2 class="ui horizontal divider teal header" id="osc-divider">
+                    <i class="list alternate outline icon"></i>
+                    Budget Utilization
+                </h2>
+                {{!-- column-chart --}}
+                {{!-- <div class="ui grid stackable padded">
+                    <div class="eight wide computer eight wide tablet sixteen wide mobile column"
+                        id="exc-expense-column-container">
+                        <canvas id="exc-expense-column-canvas" data-hidden=false height=200></canvas>
+                    </div>
+                    <div class="eight wide computer eight wide tablet sixteen wide mobile column"
+                        id="exc-expense-timeseries">
+                        <canvas id="exc-expense-bar-canvas" data-hidden=false height=200></canvas>
+                    </div>
+                </div> --}}
+                <div class="ui raised segment">
+                    <div id="overall-util-canvas"></div>
+                </div>
+                <div class="ui raised segment">
+                    <div id="daily-util-canvas"></div>
+                </div>
+            </div>
+        </div>
+
+        {{!-- financial Insights --}}
+        <div class="widget">
+            <div class="ui raised segment" id="fin-goal-tracking">
+                <h2 class="ui horizontal divider purple header" id="osc-divider">
+                    <i class="list alternate outline icon"></i>
+                    Financial Insights
+                </h2>
+                {{!-- column-chart --}}
+                {{!-- <div class="ui grid stackable padded">
+                    <div class="eight wide computer eight wide tablet sixteen wide mobile column"
+                        id="exc-expense-column-container">
+                        <canvas id="exc-expense-column-canvas" data-hidden=false height=200></canvas>
+                    </div>
+                    <div class="eight wide computer eight wide tablet sixteen wide mobile column"
+                        id="exc-expense-timeseries">
+                        <canvas id="exc-expense-bar-canvas" data-hidden=false height=200></canvas>
+                    </div>
+                </div> --}}
+
+                <div class="ui raised segment">
+                    <div id="guidance-canvas"></div>
+                </div>
+                <div class="ui raised segment">
+                    <div id="sentiment-canvas"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="widget" id="expense-table">
+            <div class="ui raised segment">
+                <h2 class="ui horizontal divider grey header fluid">
+                    <div class="ui centered grid padded">
+                        <div class="column">
+                            <i class="list alternate outline icon"></i>
+                            Expenditure Status
+                </h2>
+                <table class="ui celled padded table">
+                    <thead>
+                        <tr>
+                            <th class="table-thead">Category Name</th>
+                            <th class="table-thead">Monthly Budgeted Amount</th>
+                            <th class="table-thead">Month-to-Date Expense</th>
+                            <th class="table-thead">Month-to-Date Utilization</th>
+                            <th class="table-thead">Averyage Daily Utilization</th>
+                            <th class="table-thead">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Home and Utilization</td>
+                            <td class="monthlyBudget">${{homeUtil.budgetAmount}}</td>
+                            <td class="monthlyExpense">${{homeUtil.monthExpAmount}}</td>
+                            <td class="monthlyUtil">{{homeUtil.monthUtil}}%</td>
+                            <td class="dialyAvg">{{homeUtil.dailyUtil}}%</td>
+                            <td class="status">{{homeUtil.status}}</td>
+                        </tr>
+                        <tr>
+                            <td>Groceries</td>
+                            <td class="monthlyBudget">${{groceries.budgetAmount}}</td>
+                            <td class="monthlyExpense">${{groceries.monthExpAmount}}</td>
+                            <td class="monthlyUtil">{{groceries.monthUtil}}%</td>
+                            <td class="dialyAvg">{{groceries.dailyUtil}}%</td>
+                            <td class="status">{{groceries.status}}</td>
+                        <tr>
+                            <td>Transport</td>
+                            <td class="monthlyBudget">${{transport.budgetAmount}}</td>
+                            <td class="monthlyExpense"> ${{transport.monthExpAmount}}</td>
+                            <td class="monthlyUtil">{{transport.monthUtil}}%</td>
+                            <td class="dialyAvg">{{transport.dailyUtil}}%</td>
+                            <td class="status">{{transport.status}}</td>
+                            {{!-- <td class="status">Over-spending</td> --}}
+                        </tr>
+                        <tr>
+                            <td>Entertainment and Eat-out</td>
+                            <td class="monthlyBudget">${{entEatout.budgetAmount}}</td>
+                            <td class="monthlyExpense">${{entEatout.monthExpAmount}}</td>
+                            <td class="monthlyUtil">{{entEatout.monthUtil}}%</td>
+                            <td class="dialyAvg">{{entEatout.dailyUtil}}%</td>
+                            <td class="status"></i>{{entEatout.status}}</td>
+                            {{!-- <td class="status">About to reach the limit</td> --}}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/assets/js/index.js"></script>
+<script src="/assets/js/dashboard_chart.js"></script>

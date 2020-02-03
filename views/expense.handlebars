@@ -1,0 +1,246 @@
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+<!-- sidebar -->
+<div class="ui sidebar inverted vertical menu sidebar-menu" id="sidebar">
+    <div class="item" id="general-tab">
+        <div class="ui inverted accordion">
+            <div class="active title">
+                <i class="home icon"></i>
+                <div class="header">General</div>
+            </div>
+            <div class="active content">
+                <a href="/index" class="item">
+                    <div>
+                        <i class="icon tachometer alternate"></i>
+                        Dashboard
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="ui inverted accordion">
+            <div class="active title">
+                <i class="user md icon"></i>
+                <div class="header">
+                    Manage
+                </div>
+            </div>
+            <div class="active content">
+                <a class="item" href="/budget">
+                    <div><i class="cogs icon"></i>Budget</div>
+                </a>
+                <a class="item" href="/expenses">
+                    <div><i class="users icon"></i>Expenses</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+        <a href="/insights">
+            <i class="icon chart line"></i>
+            <div class="header" id="insights">
+                Insights
+            </div>
+        </a>
+    </div>
+
+    <div class="item">
+        <div class="ui inverted accordion">
+            <div class="active title">
+                <i class="eye icon"></i>
+                <div class="header">Snapshots</div>
+            </div>
+            <div class="active content">
+                <a class="item">
+                     <div class="header">
+                        Month-to-Date Usage
+                    </div>
+                    <div class="ui tiny olive inverted progress">
+                        <div class="bar" style="width: {{homeUtil.monthUtil}}%"></div>
+                        <div class="label">Home and Utilization</div>
+                    </div>
+
+                    <div class="ui tiny teal inverted progress">
+                        <div class="bar" style="width:{{groceries.monthUtil}}%"></div>
+                        <div class="label">Groceries</div>
+                    </div>
+
+                    <div class="ui tiny purple inverted progress">
+                        <div class="bar" style="width: {{transport.monthUtil}}%"></div>
+                        <div class="label">Transport</div>
+                    </div>
+
+                    <div class="ui tiny yellow inverted progress">
+                        <div class="bar" style="width:{{entEatout.monthUtil}}%"></div>
+                        <div class="label">Entertainment and Eat-out</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- sidebar -->
+<!-- top nav -->
+
+<nav class="ui top fixed inverted menu">
+    <div class="left menu">
+        <a href="#" class="sidebar-menu-toggler item" data-target="#sidebar">
+            <i class="sidebar icon"></i>
+        </a>
+        <div class="header item" id="brand-header">
+            <i class="money bill alternate outline icon"></i>
+            Big Wallet
+        </div>
+    </div>
+
+    <div class="right menu">
+        <a href="#" class="item">
+            Welcome!! {{name}}
+        </a>
+        <div class="ui dropdown item">
+            <i class="user cirlce icon"></i>
+            <div class="menu">
+                <a href="#" class="item">
+                    <i class="info circle icon"></i> Account</a>
+                <a href="/api/logout" class="item" id="logout">
+                    <i class="sign-out icon"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- top nav -->
+<div class="pusher">
+    <div class="main-content">
+        <div class="widget">
+            <div class="ui raised segment">
+                <h2 class="ui horizontal divider blue header fluid">
+                    <div class="ui centered grid padded">
+                        <div class="column">
+                            <i class="list alternate outline icon"></i>
+                            Expense Management
+                        </div>
+                </h2>
+
+
+                <div id="table">
+                    <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+                                class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
+                    <table class="ui celled padded table">
+                        <thead>
+                            <tr>
+                                <th class="table-thead">Expense Title</th>
+                                <th class="table-thead">Amount</th>
+                                <th class="table-thead">Date</th>
+                                <th class="table-thead">Budget Category</th>
+                                <th class="table-thead">Sentiment</th>
+                                <th class="table-thead">Operations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-rowid="1">
+                                <td class="title" contenteditable="true">SUBMIT NEW Expenses</td>
+                                <td class="amount" contenteditable="true"></td>
+                                <td class="date">
+                                    <div class="ui icon input">
+                                        <i class="calendar icon"></i>
+                                        <input type="text" name="datepicker">
+                                    </div>
+                                </td>
+                                <td class="category">
+                                    <div class="ui selection fluid dropdown">
+                                        <div class="default text">Please Select</div>
+                                        <i class="dropdown icon"></i>
+                                        <input type="hidden" name="expense-category">
+                                        <div class="menu">
+                                            <div class="item" data-value="2">Home and Utilities</div>
+                                            <div class="item" data-value="3">Groceries</div>
+                                            <div class="item" data-value="4">Transport</div>
+                                            <div class="item" data-value="5">Entertainment and Eat-out</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="sentiment">
+                                    <div class="ui selection fluid dropdown">
+                                        <div class="default text">Please Select</div>
+                                        <i class="dropdown icon"></i>
+                                        <input type="hidden" name="expense-sentiment">
+                                        <div class="menu">
+                                            <div class="item" data-value="necessary">Necessary</div>
+                                            <div class="item" data-value="unnecessary">Unnecessary</div>
+                                            <div class="item" data-value="regreted">Regreted</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="operations">
+                                    <div class="ui small fluid basic icon buttons">
+                                        <button class="ui table-submit new-record disabled save button"><i
+                                                class="green save icon"></i></button>
+                                        <button class="ui table-remove button"><i
+                                                class="red minus circle icon"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            {{#each expenseRecords}}
+                            <tr record-id="{{this.dataValues.id}}">
+                                <td class="title" contenteditable="true">{{this.dataValues.title}}</td>
+                                <td class="amount" contenteditable="true">{{this.dataValues.amount}}</td>
+                                <td class="date">
+                                    <div class="ui icon input">
+                                        <i class="calendar icon"></i>
+                                        <input type="text" name="datepicker" value="{{this.dataValues.date}}">
+                                    </div>
+                                </td>
+                                <td class="category">
+                                    <div class="ui selection fluid dropdown">
+                                        <div class="default text">Please Select</div>
+                                        <i class="dropdown icon"></i>
+                                        <input type="hidden" name="expense-category"
+                                            value="{{this.dataValues.BudgetId}}">
+                                        <div class="menu">
+                                            <div class="item" data-value="{{../categories.homeUtil}}">Home and Utilities
+                                            </div>
+                                            <div class="item" data-value="{{../categories.groceries}}">Groceries</div>
+                                            <div class="item" data-value="{{../categories.transport}}">Transport</div>
+                                            <div class="item" data-value="{{../categories.entEatout}}">Entertainment and
+                                                Eat-out</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                 <td class="sentiment">
+                                    <div class="ui selection fluid dropdown">
+                                        <div class="default text">Please Select</div>
+                                        <i class="dropdown icon"></i>
+                                        <input type="hidden" name="expense-sentiment" value="{{this.dataValues.class}}">
+                                        <div class="menu">
+                                            <div class="item" data-value="necessary">Necessary</div>
+                                            <div class="item" data-value="unnecessary">Unnecessary</div>
+                                            <div class="item" data-value="regreted">Regreted</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="operations">
+                                    <div class="ui small fluid basic icon buttons">
+                                        <button class="ui table-submit disabled save button"><i
+                                                class="green save icon"></i></button>
+                                        <button class="ui table-remove button"><i
+                                                class="red minus circle icon"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/assets/js/expense.js"></script>
